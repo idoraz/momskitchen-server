@@ -42,6 +42,7 @@
     "fbgraph": "^1.4.1",
     "lodash": "^4.17.4",
     "lusca": "^1.5.2",
+    "mongodb": "^3.0.10",
     "mongoose": "^4.13.11",
     "nodemailer": "^4.4.1",
     "passport": "^0.4.0",

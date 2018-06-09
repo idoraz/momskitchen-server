@@ -4,6 +4,46 @@ import async from "async";
 import request from "request";
 import graph from "fbgraph";
 import { Response, Request, NextFunction } from "express";
+import connect from "./dal";
+
+
+export let getAllRecipes = async (req: Request, res: Response) => {
+  try {
+    const db = await connect();
+    const recipes = await db.collection("recipes").find({}).toArray();
+    if (recipes) {
+      res.send(recipes);
+    }
+    else {
+      res.status(500).send(`Failed to retrieve recipes from DB`);
+    }
+  }
+  catch (error) {
+    res.status(500).send(`Oops! Unexpected error has occured: ${error.message}`);
+  }
+};
+
+export let getRecipe = async (req: Request, res: Response) => {
+  try {
+    const db = await connect();
+    const recipe = await db.collection(req.params.collection).findOne({ "key": req.params.key });
+    if (recipe) {
+      res.send(recipe);
+    }
+    else {
+      res.status(500).send(`Couldn't find ${req.params.key} in collection: ${req.params.collection}`);
+    }
+  }
+  catch (error) {
+    res.status(500).send(`Oops! Unexpected error has occured: ${error.message}`);
+  }
+
+};
+
+
+
+/* FROM HERE TEMPLATE CODE */
+
 
 
 /**
