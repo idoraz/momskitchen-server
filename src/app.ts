@@ -116,7 +116,7 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
  */
 app.get("/api", apiController.getApi);
 app.get("/getAllRecipes", apiController.getAllRecipes);
-app.get("/getRecipe/:collection/:key", apiController.getRecipe);
+app.get("/getObjectByKey/:collection/:key", apiController.getObjectByKey);
 
 /**
  * OAuth authentication routes. (Sign in)

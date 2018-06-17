@@ -23,7 +23,7 @@ export let getAllRecipes = async (req: Request, res: Response) => {
   }
 };
 
-export let getRecipe = async (req: Request, res: Response) => {
+export let getObjectByKey = async (req: Request, res: Response) => {
   try {
     const db = await connect();
     const recipe = await db.collection(req.params.collection).findOne({ "key": req.params.key });
