@@ -116,6 +116,7 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
  */
 app.get("/api", apiController.getApi);
 app.get("/getAllRecipes", apiController.getAllRecipes);
+app.get("/getRecipes/:categoryKey", apiController.getRecipes);
 app.get("/getObjectByKey/:collection/:key", apiController.getObjectByKey);
 
 /**
