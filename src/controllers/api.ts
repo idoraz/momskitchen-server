@@ -23,6 +23,22 @@ export let getAllRecipes = async (req: Request, res: Response) => {
   }
 };
 
+export let getRecipes = async (req: Request, res: Response) => {
+  try {
+    const db = await connect();
+    const recipes = await db.collection("recipes").find({"category.key": req.params.categoryKey}).toArray();
+    if (recipes) {
+      res.send(recipes);
+    }
+    else {
+      res.status(500).send(`Failed to retrieve recipes from DB by category kye: ${req.params.categoryKey}`);
+    }
+  }
+  catch (error) {
+    res.status(500).send(`Oops! Unexpected error has occured: ${error.message}`);
+  }
+};
+
 export let getObjectByKey = async (req: Request, res: Response) => {
   try {
     const db = await connect();
