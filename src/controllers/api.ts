@@ -56,6 +56,22 @@ export let getObjectByKey = async (req: Request, res: Response) => {
 
 };
 
+export let searchRecipe = async (req: Request, res: Response) => {
+  try {
+    const db = await connect();
+    const recipes = await db.collection("recipes").find({ "name": { $regex: `.*${req.params.token}*` } }).toArray();
+    if (recipes) {
+      res.send(recipes);
+    }
+    else {
+      res.status(500).send(`Couldn't find any recipes!`);
+    }
+  }
+  catch (error) {
+    res.status(500).send(`Oops! Unexpected error has occured: ${error.message}`);
+  }
+};
+
 
 
 /* FROM HERE TEMPLATE CODE */

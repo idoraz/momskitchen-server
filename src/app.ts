@@ -118,6 +118,7 @@ app.get("/api", apiController.getApi);
 app.get("/getAllRecipes", apiController.getAllRecipes);
 app.get("/getRecipes/:categoryKey", apiController.getRecipes);
 app.get("/getObjectByKey/:collection/:key", apiController.getObjectByKey);
+app.get("/searchRecipe/:token", apiController.searchRecipe);
 
 /**
  * OAuth authentication routes. (Sign in)
