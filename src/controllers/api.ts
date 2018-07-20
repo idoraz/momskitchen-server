@@ -12,13 +12,16 @@ export let getAllRecipes = async (req: Request, res: Response) => {
     const db = await connect();
     const recipes = await db.collection("recipes").find({}).toArray();
     if (recipes) {
+      logUser("Request: getAllRecipes");
       res.send(recipes);
     }
     else {
+      logUser("Error: Failed to retrieve recipes from DB");
       res.status(500).send(`Failed to retrieve recipes from DB`);
     }
   }
   catch (error) {
+    logUser(`Error: ${error.message}`);
     res.status(500).send(`Oops! Unexpected error has occured: ${error.message}`);
   }
 };
@@ -72,6 +75,18 @@ export let searchRecipe = async (req: Request, res: Response) => {
   }
 };
 
+let logUser = async (action: string) => {
+  try {
+    const db = await connect();
+    const recipes = await db.collection("logs").insertOne({ 
+      "timeStamp": new Date().toString(),
+      "requestedAction": action
+    });
+  }
+  catch (error) {
+    console.log(error.message);
+  }
+}
 
 
 /* FROM HERE TEMPLATE CODE */
