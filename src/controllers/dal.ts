@@ -4,7 +4,7 @@ import { MongoClient, Db } from "mongodb";
 
 export default async function (): Promise<Db> {
 
-    const url: string = "mongodb://localhost:27017";
+    const url: string = "mongodb://127.0.0.1:27017";
     const db_name: string = "momskitchen";
 
     const uri = process.env.mongodb_cn || url;
