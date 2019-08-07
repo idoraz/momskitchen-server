@@ -14,7 +14,7 @@ module.exports = {
         watch: false,
         "ignore_watch": ["node_modules", "log"],
         env: {
-          "PORT": 3000,
+          "PORT": 3010,
           "NODE_ENV": "production",
           mongodb_cn: "mongodb://localhost:27017",
           host: 'localhost',

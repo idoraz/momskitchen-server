@@ -13,7 +13,7 @@ import passport from "passport";
 import expressValidator from "express-validator";
 import bluebird from "bluebird";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
-let cors = require("cors");
+const cors = require("cors");
 
 const MongoStore = mongo(session);
 
@@ -46,7 +46,7 @@ mongoose.connect(mongoUrl, {useMongoClient: true}).then(
 });
 
 // Express configuration
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3010);
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 app.use(compression());
