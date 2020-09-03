@@ -18,7 +18,7 @@ const cors = require("cors");
 const MongoStore = mongo(session);
 
 // Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config({ path: ".env.example" });
+dotenv.config({ path: ".env" });
 
 // Controllers (route handlers)
 import * as homeController from "./controllers/home";
@@ -29,7 +29,7 @@ import * as dalController from "./controllers/dal";
 
 
 // API keys and Passport configuration
-import * as passportConfig from "./config/passport";
+// import * as passportConfig from "./config/passport";
 
 // Create Express server
 const app = express();
@@ -37,13 +37,16 @@ app.use(cors());
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
+console.log(mongoUrl);
 (<any>mongoose).Promise = bluebird;
-mongoose.connect(mongoUrl, {useMongoClient: true}).then(
-  () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
-).catch(err => {
-  console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
-  // process.exit();
-});
+// mongoose.connect(mongoUrl, {useMongoClient: true}).then(
+//   () => {
+//     console.log('Connected to DB');
+//    },
+// ).catch(err => {
+//   console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
+//   // process.exit();
+// });
 
 // Express configuration
 app.set("port", process.env.PORT || 3010);
@@ -105,11 +108,11 @@ app.get("/signup", userController.getSignup);
 app.post("/signup", userController.postSignup);
 app.get("/contact", contactController.getContact);
 app.post("/contact", contactController.postContact);
-app.get("/account", passportConfig.isAuthenticated, userController.getAccount);
-app.post("/account/profile", passportConfig.isAuthenticated, userController.postUpdateProfile);
-app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
-app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
+// app.get("/account", passportConfig.isAuthenticated, userController.getAccount);
+// app.post("/account/profile", passportConfig.isAuthenticated, userController.postUpdateProfile);
+// app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
+// app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
+// app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 /**
  * API routes.
