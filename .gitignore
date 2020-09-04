@@ -23,6 +23,7 @@ coverage
 
 # API keys and secrets
 .env
+ecosystem.config.js
 
 # Dependency directory
 node_modules
