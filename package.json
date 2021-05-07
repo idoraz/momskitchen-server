@@ -42,7 +42,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.4",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lusca": "^1.5.2",
     "mongodb": "^3.6.0",
     "mongoose": "^4.13.11",
